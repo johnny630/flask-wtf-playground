@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "flask-wtf-playground"
+version = "0.1.0"
+description = ""
+authors = ["johnnyGogo <johnny.liu@tarokosoftware.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+Flask = "^1.1.2"
+Flask-WTF = "^0.14.3"
+python-dotenv = "^0.15.0"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
