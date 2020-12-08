@@ -1,0 +1,17 @@
+<hr>
+{% for fieldName, errorMessage in form.errors.items() %}
+  <p style="color:red">{{ fieldName }}: {{ errorMessage }}</p>
+{% endfor %}
+
+<form method="POST" action="{{ url_for('validator_view.mac_address') }}">
+    {{ form.csrf_token }}
+    {{ form.mac.label }} {{ form.mac }}<br/>
+    {{ form.submit }}
+</form>
+
+{% if success %}
+<div style="color:green">
+  Post data success:
+  <p>{{ form.mac.data }}</p>
+</div>
+{% endif %}

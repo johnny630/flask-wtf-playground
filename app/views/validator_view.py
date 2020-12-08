@@ -4,7 +4,7 @@ from flask_wtf import FlaskForm
 # wtform
 from wtforms import BooleanField, IntegerField, PasswordField, SubmitField, StringField
 from wtforms.validators import (
-    DataRequired, Email, Length, EqualTo, InputRequired, IPAddress
+    DataRequired, Email, Length, EqualTo, InputRequired, IPAddress, MacAddress
 )
 
 validator_view_bp = Blueprint('validator_view', __name__)
@@ -68,3 +68,17 @@ def ip_address():
         return render_template('validator/ip_address.html', form=form, success=True)
 
     return render_template('validator/ip_address.html', form=form)
+
+
+class MacAddressForm(FlaskForm):
+    mac = StringField('Mac Address', [MacAddress()])
+    submit = SubmitField('Submit')
+
+@validator_view_bp.route('/mac_address', methods=('GET', 'POST'))
+def mac_address():
+    form = MacAddressForm()
+
+    if request.method == 'POST' and form.validate_on_submit():
+        return render_template('validator/mac_address.html', form=form, success=True)
+
+    return render_template('validator/mac_address.html', form=form)
