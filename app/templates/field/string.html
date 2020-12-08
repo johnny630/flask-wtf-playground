@@ -1,0 +1,15 @@
+<form method="POST" action="{{ url_for('field_view.string') }}">
+    {{ form.csrf_token }}
+    {{ form.name.label }} {{ form.name(size=20) }}
+    <input type="submit" value="Go">
+</form>
+
+{% if success %}
+Post data:
+<p>{{ form.name.data }}</p>
+<p>{{ form.name.raw_data  }}</p>
+<p>{{ form.name.name }}</p>
+<p>{{ form.name.id }}</p>
+<p>{{ form.name.type }}</p>
+<p>{{ form.name.flags }}</p>
+{% endif %}

@@ -1,0 +1,19 @@
+<hr>
+{% for fieldName, errorMessage in form.errors.items() %}
+  <p style="color:red">{{ fieldName }}: {{ errorMessage }}</p>
+{% endfor %}
+
+<form method="POST" action="{{ url_for('validator_view.equal_to') }}">
+    {{ form.csrf_token }}
+    {{ form.password.label }} {{ form.password(size=30) }}<br/>
+    {{ form.confirm.label }} {{ form.confirm(size=30) }}<br/>
+    {{ form.submit }}
+</form>
+
+{% if success %}
+<div style="color:green">
+  Post data success:
+  <p>{{ form.password.data }}</p>
+  <p>{{ form.confirm.data }}</p>
+</div>
+{% endif %}

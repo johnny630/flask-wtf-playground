@@ -1,0 +1,27 @@
+https://wtforms.readthedocs.io/en/2.3.x/validators/#built-in-validators
+裡面有段
+<pre>
+NOTE this validator used to be called Required but the way it behaved (requiring coerced data, 
+not input data) meant it functioned in a way which was not symmetric to the Optional validator 
+and furthermore caused confusion with certain fields which coerced data to ‘falsey’ values like 0, 
+Decimal(0), time(0) etc. Unless a very specific reason exists, we recommend using the 
+InputRequired instead.
+</pre>
+簡而言之，InputRequired是資料未後處理完， DataRequired是資料已經過後處理 (例如 輸入欄位為空白或數字欄位為0時，python會認定為validate false)。
+所以建議若沒特殊需求用InputRequired就好
+
+<hr>
+<form method="POST" action="{{ url_for('validator_view.data_required') }}">
+    {{ form.csrf_token }}
+    {{ form.name.label }} {{ form.name(size=20) }}<br/>
+    {{ form.level.label }} {{ form.level }}<br/>
+    {{ form.submit }}
+</form>
+
+{% if success %}
+<div style="color:green">
+  Post data success:
+  <p>{{ form.name.data }}</p>
+  <p>{{ form.level.data }}</p>
+</div>
+{% endif %}
