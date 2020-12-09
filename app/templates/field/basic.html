@@ -1,0 +1,78 @@
+<hr>
+{% for fieldName, errorMessage in form.errors.items() %}
+  <p style="color:red">{{ fieldName }}: {{ errorMessage }}</p>
+{% endfor %}
+
+<form method="POST" action="{{ url_for('field_view.basic') }}">
+    {{ form.csrf_token }}
+    {{ form.boolean.label }} {{ form.boolean }}<br/>
+    {{ form.date.label }} {{ form.date }}<br/>
+    {{ form.date_time.label }} {{ form.date_time }}<br/>
+    {{ form.decimal.label }} {{ form.decimal }}<br/>
+    {{ form.file.label }} {{ form.file }}<br/>
+    {{ form.multiple_file.label }} {{ form.multiple_file }}<br/>
+    {{ form.float.label }} {{ form.float }}<br/>
+    {{ form.integer.label }} {{ form.integer }}<br/>
+    Radio:
+    <ur>
+        {% for subfield in form.radio %}
+            <li>{{ subfield }} {{ subfield.label }}</li>
+        {% endfor %}
+    </ur>
+    <br/>
+    {{ form.select.label }} {{ form.select }}<br/>
+    {{ form.select_multiple.label }} {{ form.select_multiple }}<br/>
+    {{ form.string.label }} {{ form.string }}<br/>
+    {{ form.hidden.label }} {{ form.hidden }}<br/>
+    {{ form.password.label }} {{ form.password }}<br/>
+    {{ form.text_area.label }} {{ form.text_area }}<br/>
+    <br/>
+    <br/>
+    html5 -----------------------------------------<br/>
+    {{ form.search.label }} {{ form.search }}<br/>
+    {{ form.tel.label }} {{ form.tel }}<br/>
+    {{ form.url.label }} {{ form.url }}<br/>
+    {{ form.email.label }} {{ form.email }}<br/>
+    {{ form.html5_date_time.label }} {{ form.html5_date_time }}<br/>
+    {{ form.html5_date.label }} {{ form.html5_date }}<br/>
+    {{ form.time.label }} {{ form.time }}<br/>
+    {{ form.date_time_local.label }} {{ form.date_time_local }}<br/>
+    {{ form.html5_integer.label }} {{ form.html5_integer }}<br/>
+    {{ form.html5_decimal.label }} {{ form.html5_decimal }}<br/>
+    {{ form.integer_range.label }} {{ form.integer_range }}<br/>
+    {{ form.decimal_range.label }} {{ form.decimal_range }}<br/>
+    
+    {{ form.submit }}
+</form>
+
+{% if success %}
+<div style="color:green">
+  Post data success:
+  <p>{{ form.boolean.data }}</p>
+  <p>{{ form.date.data }}</p>
+  <p>{{ form.date_time.data }}</p>
+  <p>{{ form.decimal.data }}</p>
+  <p>{{ form.float.data }}</p>
+  <p>{{ form.integer.data }}</p>
+  <p>{{ form.radio.data }}</p>
+  <p>{{ form.select.data }}</p>
+  <p>{{ form.select_multiple.data }}</p>
+  <p>{{ form.string.data }}</p>
+  <p>{{ form.hidden.data }}</p>
+  <p>{{ form.password.data }}</p>
+  <p>{{ form.text_area.data }}</p>
+  <p>HTML5 -------------------------</p>
+  <p>{{ form.search.data }}</p>
+  <p>{{ form.tel.data }}</p>
+  <p>{{ form.url.data }}</p>
+  <p>{{ form.email.data }}</p>
+  <p>{{ form.html5_date_time.data }}</p>
+  <p>{{ form.html5_date.data }}</p>
+  <p>{{ form.time.data }}</p>
+  <p>{{ form.date_time_local.data }}</p>
+  <p>{{ form.html5_integer.data }}</p>
+  <p>{{ form.html5_decimal.data }}</p>
+  <p>{{ form.integer_range.data }}</p>
+  <p>{{ form.decimal_range.data }}</p>
+</div>
+{% endif %}
