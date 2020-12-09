@@ -1,0 +1,17 @@
+<hr>
+{% for fieldName, errorMessage in form.errors.items() %}
+  <p style="color:red">{{ fieldName }}: {{ errorMessage }}</p>
+{% endfor %}
+
+<form method="POST" action="{{ url_for('validator_view.regexp') }}">
+    {{ form.csrf_token }}
+    {{ form.regexp.label }} {{ form.regexp }}<br/>
+    <input type="submit" value="Submit">
+</form>
+
+{% if success %}
+<div style="color:green">
+  Post data success:
+  <p>{{ form.regexp.data }}</p>
+</div>
+{% endif %}

@@ -1,0 +1,23 @@
+<hr>
+{% for fieldName, errorMessage in form.errors.items() %}
+  <p style="color:red">{{ fieldName }}: {{ errorMessage }}</p>
+{% endfor %}
+
+<form method="POST" action="{{ url_for('validator_view.custom') }}">
+    {{ form.csrf_token }}
+    {{ form.name.label }} {{ form.name }}<br/>
+    {{ form.nick_name.label }} {{ form.nick_name }}<br/>
+    {{ form.mobile.label }} {{ form.mobile }}<br/>
+    {{ form.age.label }} {{ form.age }}<br/>
+    <input type="submit" value="Submit">
+</form>
+
+{% if success %}
+<div style="color:green">
+  Post data success:
+  <p>{{ form.name.data }}</p>
+  <p>{{ form.nick_name.data }}</p>
+  <p>{{ form.mobile.data }}</p>
+  <p>{{ form.age.data }}</p>
+</div>
+{% endif %}

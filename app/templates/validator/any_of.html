@@ -1,0 +1,18 @@
+驗證輸入值在列表中
+<hr>
+{% for fieldName, errorMessage in form.errors.items() %}
+  <p style="color:red">{{ fieldName }}: {{ errorMessage }}</p>
+{% endfor %}
+
+<form method="POST" action="{{ url_for('validator_view.any_of') }}">
+    {{ form.csrf_token }}
+    {{ form.choose.label }} {{ form.choose }}<br/>
+    <input type="submit" value="Submit">
+</form>
+
+{% if success %}
+<div style="color:green">
+  Post data success:
+  <p>{{ form.choose.data }}</p>
+</div>
+{% endif %}

@@ -1,0 +1,19 @@
+如果沒有填值則會是None
+
+<hr>
+{% for fieldName, errorMessage in form.errors.items() %}
+  <p style="color:red">{{ fieldName }}: {{ errorMessage }}</p>
+{% endfor %}
+
+<form method="POST" action="{{ url_for('validator_view.option') }}">
+    {{ form.csrf_token }}
+    {{ form.age.label }} {{ form.age }}<br/>
+    <input type="submit" value="Submit">
+</form>
+
+{% if success %}
+<div style="color:green">
+  Post data success:
+  <p>{{ form.age.data }}</p>
+</div>
+{% endif %}
