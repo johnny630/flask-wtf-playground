@@ -1,46 +1,35 @@
 <hr>
-{% for fieldName, errorMessage in form.errors.items() %}
-  <p style="color:red">{{ fieldName }}: {{ errorMessage }}</p>
-{% endfor %}
+{% from "base/_render_field.html" import render_field %}
 
 <form method="POST" action="{{ url_for('field_view.basic') }}">
     {{ form.csrf_token }}
-    {{ form.boolean.label }} {{ form.boolean }}<br/>
-    {{ form.date.label }} {{ form.date }}<br/>
-    {{ form.date_time.label }} {{ form.date_time }}<br/>
-    {{ form.decimal.label }} {{ form.decimal }}<br/>
-    {{ form.file.label }} {{ form.file }}<br/>
-    {{ form.multiple_file.label }} {{ form.multiple_file }}<br/>
-    {{ form.float.label }} {{ form.float }}<br/>
-    {{ form.integer.label }} {{ form.integer }}<br/>
-    Radio:
-    <ur>
-        {% for subfield in form.radio %}
-            <li>{{ subfield }} {{ subfield.label }}</li>
-        {% endfor %}
-    </ur>
-    <br/>
-    {{ form.select.label }} {{ form.select }}<br/>
-    {{ form.select_multiple.label }} {{ form.select_multiple }}<br/>
-    {{ form.string.label }} {{ form.string }}<br/>
-    {{ form.hidden.label }} {{ form.hidden }}<br/>
-    {{ form.password.label }} {{ form.password }}<br/>
-    {{ form.text_area.label }} {{ form.text_area }}<br/>
-    <br/>
-    <br/>
+    {{ render_field(form.boolean) }}
+    {{ render_field(form.date) }}
+    {{ render_field(form.date_time) }}
+    {{ render_field(form.decimal) }}
+    {{ render_field(form.file) }}
+    {{ render_field(form.multiple_file) }}
+    {{ render_field(form.float) }}
+    {{ render_field(form.integer) }}
+    {{ render_field(form.radio) }}
+    {{ render_field(form.select) }}
+    {{ render_field(form.select_multiple) }}
+    {{ render_field(form.hidden) }}
+    {{ render_field(form.password) }}
+    {{ render_field(form.text_area) }}
     html5 -----------------------------------------<br/>
-    {{ form.search.label }} {{ form.search }}<br/>
-    {{ form.tel.label }} {{ form.tel }}<br/>
-    {{ form.url.label }} {{ form.url }}<br/>
-    {{ form.email.label }} {{ form.email }}<br/>
-    {{ form.html5_date_time.label }} {{ form.html5_date_time }}<br/>
-    {{ form.html5_date.label }} {{ form.html5_date }}<br/>
-    {{ form.time.label }} {{ form.time }}<br/>
-    {{ form.date_time_local.label }} {{ form.date_time_local }}<br/>
-    {{ form.html5_integer.label }} {{ form.html5_integer }}<br/>
-    {{ form.html5_decimal.label }} {{ form.html5_decimal }}<br/>
-    {{ form.integer_range.label }} {{ form.integer_range }}<br/>
-    {{ form.decimal_range.label }} {{ form.decimal_range }}<br/>
+    {{ render_field(form.search) }}
+    {{ render_field(form.tel) }}
+    {{ render_field(form.url) }}
+    {{ render_field(form.email) }}
+    {{ render_field(form.html5_date_time) }}
+    {{ render_field(form.html5_date) }}
+    {{ render_field(form.time) }}
+    {{ render_field(form.date_time_local) }}
+    {{ render_field(form.html5_integer) }}
+    {{ render_field(form.html5_decimal) }}
+    {{ render_field(form.integer_range) }}
+    {{ render_field(form.decimal_range) }}
     
     {{ form.submit }}
 </form>
